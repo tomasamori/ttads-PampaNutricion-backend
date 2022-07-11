@@ -1,0 +1,33 @@
+{
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.4.4",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.19"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.17.10",
+    "@babel/node": "^7.17.10",
+    "@babel/preset-env": "^7.17.10"
+  },
+  "name": "ttads-pampanutricion-backend",
+  "description": "Pampa Nutrición es una empresa de la ciudad Villa Ramallo que se dedica al comercio y distribución de alimentos para mascotas de forma mayorista a los pueblos cercanos a la localidad, como La Violeta, San Pedro, Ramallo, San Nicolás, entre otros.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js --exec babel-node"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomasamori/ttads-PampaNutricion-backend.git"
+  },
+  "author": "Tomás Amori, Matías Mayor, Juan Cruz Vazquez, Alexis Tomás",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tomasamori/ttads-PampaNutricion-backend/issues"
+  },
+  "homepage": "https://github.com/tomasamori/ttads-PampaNutricion-backend#readme"
+}
