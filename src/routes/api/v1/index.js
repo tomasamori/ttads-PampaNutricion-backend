@@ -1,4 +1,5 @@
 import express from 'express';
+import sucursal from './sucursal';
 import producto from './producto';
 
 const router = express.Router();

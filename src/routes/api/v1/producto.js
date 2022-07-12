@@ -4,7 +4,7 @@ import Producto from "../../../models/Producto";
 const router = express.Router();
 
 // curl -UseBasicParsing -Method GET -URI http://localhost:3000/api/v1/producto
-// get all
+// getAll
 
 router.get('/', async(req, res) => {
     let productos = await Producto.find();
