@@ -23,7 +23,7 @@ router.get('/:id', async(req, res) => {
     return res.status(200).json({
         success:true,
         data: suc,
-        message: "Sucursal encontrada"
+        message: "Sucursal encontrada exitosamente"
     })
 });
 
