@@ -1,17 +1,17 @@
 import express from "express";
 import Empleado from "../../../models/Empleado"
-import {re} from "@babel/core/lib/vendor/import-meta-resolve";
 
 const router = express.Router();
 
 // curl -UseBasicParsing -Method GET -URI http://localhost:3000/api/v1/empleado
 // getAll
+
 router.get('/', async (req,res)=>{
-    let empleados = await Empleado.find();
+    let emp = await Empleado.find();
     return res.status(200).json({
         success: true,
-        data: empleados,
-        messaga: 'Lista de Empleados recuperada exitosamente'
+        data: emp,
+        message: "Lista de Empleados recuperada exitosamente"
     })
 });
 
@@ -19,50 +19,49 @@ router.get('/', async (req,res)=>{
 // getOne
 
 router.get('/:id', async(req,res)=>{
-    let empleado =await Empleado.findOne({"_id":req.params.id})
+    let emp =await Empleado.findOne({"_id":req.params.id})
     return res.status(200).json({
         success:true,
-        data: empleado,
+        data: emp,
         message: "Empleado encontrado exitosamente"
     })
 });
 
-// curl -UseBasicParsing -Method POST -Headers @{"Content-Type"="application/json"} -Body '{"marca":"test", "nombre":"test", "descripcion":"test", "peso":"test"}' -URI http://localhost:3000/api/v1/empleado
+// curl -UseBasicParsing -Method POST -Headers @{"Content-Type"="application/json"} -Body '{"idUsuario":"test", "usuario":"test", "password":"test", "cuil":"test", "email":"test", "fechaNacimiento": "2000,01,01", "direccion":"test", "telefono":"test", "legajo":"test", "nombre":"test", "apellido":"test"}' -URI http://localhost:3000/api/v1/empleado
 // newEmpleado
 
 router.post('/', async(req,res)=>{
-    let empleado = await new Empleado(req.body);
-    await  empleado.save();
+    let emp = await new Empleado(req.body);
+    await  emp.save();
     return res.status(201).json({
         success: true,
-        data: empleado,
-        message: 'Empleado agregado exitosamente'
+        data: emp,
+        message: "Empleado agregado exitosamente"
     })
 });
 
-// curl -UseBasicParsing -Method PUT -Headers @{"Content-Type"= "application/json"} -Body '{"marca":"cambio", "nombre":"cambio", "descripcion":"cambio", "peso":"cambio"}' -URI http://localhost:3000/api/v1/empleado/<id>
+// curl -UseBasicParsing -Method PUT -Headers @{"Content-Type"= "application/json"} -Body '{"idUsuario":"test", "usuario":"test", "password":"test", "cuil":"test", "email":"test", "fechaNacimiento": "2000,01,01", "direccion":"test", "telefono":"test", "legajo":"test", "nombre":"test", "apellido":"test"}' -URI http://localhost:3000/api/v1/empleado/<id>
 // updateEmpleado
 
-router.get('/:id',async (req,res)=>{
-    let empleado = await Empleado.findOne({"_id":req.params.id});
-    await empleado.update(req.body);
+router.put('/:id',async (req,res)=>{
+    let emp = await Empleado.findOne({"_id":req.params.id});
+    await emp.update(req.body);
     return res.status(200).json({
         success:true,
         data:{"_id":req.params.id},
-        message: 'Empleado Actualizado Exitosamente'
+        message: "Empleado actualizado exitosamente"
     })
 });
 
 // curl -UseBasicParsing -Method DELETE -URI http://localhost:3000/api/v1/empleado/<id>
 // deleteEmpleado
 
-router.get('/:id',async (req,res)=>{
-    let empleado = await Empleado.findOne({"_id":req.params.id});
-    await empleado.update(req.body);
+router.delete('/:id',async (req,res)=>{
+    await Empleado.deleteOne({"_id":req.params.id});
     return res.status(200).json({
         success:true,
         data:{"_id":req.params.id},
-        message: 'Empleado Eliminado Correctamente'
+        message: "Empleado eliminado correctamente"
     })
 });
 

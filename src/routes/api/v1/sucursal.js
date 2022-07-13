@@ -11,7 +11,7 @@ router.get('/', async(req, res) => {
     return res.status(200).json({
         success: true,
         data: sucursales,
-        message: "Lista de sucursales recuperada exitosamente"
+        message: "Lista de Sucursales recuperada exitosamente"
     })
 });
 
@@ -36,7 +36,7 @@ router.post('/', async(req, res) => {
     return res.status(201).json({
         success: true,
         data: suc,
-        message: 'Sucursal agregada exitosamente'
+        message: "Sucursal agregada exitosamente"
     })
 });
 
@@ -49,7 +49,7 @@ router.put('/:id', async(req, res) => {
     return res.status(200).json({
         success: true,
         data: {"_id": req.params.id},
-        message: 'Sucursal actualizada exitosamente'
+        message: "Sucursal actualizada exitosamente"
     })
 });
 
@@ -61,7 +61,7 @@ router.delete('/:id', async(req, res) => {
     return res.status(200).json({
         success: true,
         data: {"_id": req.params.id},
-        message: 'Sucursal eliminada exitosamente'
+        message: "Sucursal eliminada exitosamente"
     })
 });
 

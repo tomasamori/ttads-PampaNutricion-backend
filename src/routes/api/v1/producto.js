@@ -11,7 +11,7 @@ router.get('/', async(req, res) => {
     return res.status(200).json({
         success: true,
         data: productos,
-        message: 'Lista de productos recuperada exitosamente'
+        message: "Lista de Productos recuperada exitosamente"
     })
 });
 

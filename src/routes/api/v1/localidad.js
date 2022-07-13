@@ -11,7 +11,7 @@ router.get('/', async(req, res) => {
     return res.status(200).json({
         success: true,
         data: localidades,
-        message: "Lista de localidades recuperada exitosamente"
+        message: "Lista de Localidades recuperada exitosamente"
     })
 });
 
@@ -36,7 +36,7 @@ router.post('/', async(req, res) => {
     return res.status(201).json({
         success: true,
         data: loc,
-        message: 'Localidad agregada exitosamente'
+        message: "Localidad agregada exitosamente"
     })
 });
 
@@ -49,7 +49,7 @@ router.put('/:id', async(req, res) => {
     return res.status(200).json({
         success: true,
         data: {"_id": req.params.id},
-        message: 'Localidad actualizada exitosamente'
+        message: "Localidad actualizada exitosamente"
     })
 });
 
@@ -61,7 +61,7 @@ router.delete('/:id', async(req, res) => {
     return res.status(200).json({
         success: true,
         data: {"_id": req.params.id},
-        message: 'Localidad eliminada exitosamente'
+        message: "Localidad eliminada exitosamente"
     })
 });
 
