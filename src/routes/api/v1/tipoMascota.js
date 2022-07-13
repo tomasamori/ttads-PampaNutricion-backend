@@ -28,7 +28,7 @@ router.get('/:id', async(req,res) => {
     })
 });
 
-// curl -UseBasicParsing -Method POST -Headers @{"Content-Type"="application/json"} -Body '{"idTipoMascota":"test", "nombre":"test", "tamanoRaza":"test", "edad":"test"}' -URI http://localhost:3000/api/v1/tipoMascota/
+// curl -UseBasicParsing -Method POST -Headers @{"Content-Type"="application/json"} -Body '{"idTipoMascota":"1", "nombre":"Perro", "tamanoRaza":"Mediano", "edad":"Adulto"}' -URI http://localhost:3000/api/v1/tipoMascota/
 // newTipoMascota
 
 router.post('/', async(req, res)=>{

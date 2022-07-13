@@ -1,6 +1,6 @@
-// tested
 import express from "express";
 import Producto from "../../../models/Producto";
+import TipoMascota from "../../../models/TipoMascota";
 
 const router = express.Router();
 
@@ -8,7 +8,7 @@ const router = express.Router();
 // getAll
 
 router.get('/', async(req, res) => {
-    let productos = await Producto.find();
+    let productos = await Producto.find().populate('tipoMascota');
     return res.status(200).json({
         success: true,
         data: productos,
@@ -20,7 +20,7 @@ router.get('/', async(req, res) => {
 // getOne
 
 router.get('/:id', async(req,res) => {
-    let pro = await Producto.findOne({"_id":req.params.id})
+    let pro = await Producto.findOne({"_id":req.params.id}).populate('tipoMascota');
     return res.status(200).json({
         success:true,
         data: pro,
@@ -28,7 +28,7 @@ router.get('/:id', async(req,res) => {
     })
 });
 
-// curl -UseBasicParsing -Method POST -Headers @{"Content-Type"="application/json"} -Body '{"idProducto":"test", "marca":"test", "nombre":"test", "descripcion":"test", "peso":"10"}' -URI http://localhost:3000/api/v1/producto/
+// curl -UseBasicParsing -Method POST -Headers @{"Content-Type"="application/json"} -Body '{"idProducto":"test", "marca":"test", "nombre":"test", "descripcion":"test", "peso":"10", "tipoMascota":"62cf222803cc229daf562eed"}' -URI http://localhost:3000/api/v1/producto/
 // newProducto
 
 router.post('/', async(req, res)=>{
