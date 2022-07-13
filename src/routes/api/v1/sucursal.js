@@ -1,3 +1,4 @@
+// tested
 import express from "express";
 import Sucursal from "../../../models/Sucursal";
 
@@ -27,7 +28,7 @@ router.get('/:id', async(req, res) => {
     })
 });
 
-// curl -UseBasicParsing -Method POST -Headers @{"Content-Type"= "application/json"} -Body '{"nombre": "test", "direccion": "test"}' -URI http://localhost:3000/api/v1/sucursal
+// curl -UseBasicParsing -Method POST -Headers @{"Content-Type"= "application/json"} -Body '{"nombre": "test", "direccion": "test"}' -URI http://localhost:3000/api/v1/sucursal/
 // newSucursal
 
 router.post('/', async(req, res) => {

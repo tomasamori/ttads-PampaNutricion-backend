@@ -1,9 +1,10 @@
+// tested
 import express from "express";
-import TipoMascota from "../../../models/Producto";
+import TipoMascota from "../../../models/TipoMascota";
 
 const router = express.Router();
 
-// curl -UseBasicParsing -Method GET -URI http://localhost:3000/api/v1/tipoMascota
+// curl -UseBasicParsing -Method GET -URI http://localhost:3000/api/v1/tipoMascota/
 // getAll
 
 router.get('/', async(req, res) => {
@@ -27,7 +28,7 @@ router.get('/:id', async(req,res) => {
     })
 });
 
-//curl -UseBasicParsing -Method POST -Headers @{"Content-Type"="application/json"} -Body '{"nombre":"test", "tamanoraza":"test", "edad":"test"}' -URI http://localhost:3000/api/v1/tipoMascota
+// curl -UseBasicParsing -Method POST -Headers @{"Content-Type"="application/json"} -Body '{"idTipoMascota":"test", "nombre":"test", "tamanoRaza":"test", "edad":"test"}' -URI http://localhost:3000/api/v1/tipoMascota/
 // newTipoMascota
 
 router.post('/', async(req, res)=>{
@@ -36,11 +37,11 @@ router.post('/', async(req, res)=>{
     return res.status(201).json({
         success: true,
         data: tm,
-        message: 'Tipo de Mascota agregado exitosamente'
+        message: "Tipo de Mascota agregado exitosamente"
     })
 });
 
-// curl -UseBasicParsing -Method PUT -Headers @{"Content-Type"= "application/json"} -Body '{"nombre":"test", "tamanoraza":"test", "edad":"test"}' -URI http://localhost:3000/api/v1/tipoMascota/<id>
+// curl -UseBasicParsing -Method PUT -Headers @{"Content-Type"= "application/json"} -Body '{"idTipoMascota":"cambio", "nombre":"cambio", "tamanoRaza":"cambio", "edad":"cambio"}' -URI http://localhost:3000/api/v1/tipoMascota/<id>
 // updateTipoMascota
 
 router.put('/:id', async(req, res) => {
@@ -49,19 +50,19 @@ router.put('/:id', async(req, res) => {
     return res.status(200).json({
         success: true,
         data: {"_id": req.params.id},
-        message: 'Tipo de Mascota actualizada exitosamente'
+        message: "Tipo de Mascota actualizada exitosamente"
     })
 });
 
-//curl -UseBasicParsing -Method DELETE -URI http://localhost:3000/api/v1/tipoMascota/<id>
-//deleteTipoMascota
+// curl -UseBasicParsing -Method DELETE -URI http://localhost:3000/api/v1/tipoMascota/<id>
+// deleteTipoMascota
 
 router.delete('/:id', async(req, res)=> {
     await TipoMascota.deleteOne({"_id":req.params.id});
     return res.status(200).json({
         success: true,
         data: {"_id": req.params.id},
-        message: 'Tipo de Mascota eliminado exitosamente'
+        message: "Tipo de Mascota eliminado exitosamente"
     })
 });
 

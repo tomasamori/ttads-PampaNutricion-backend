@@ -1,3 +1,4 @@
+// tested
 import express from "express";
 import Localidad from "../../../models/Localidad";
 

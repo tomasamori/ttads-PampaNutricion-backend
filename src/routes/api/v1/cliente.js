@@ -1,3 +1,4 @@
+// tested
 import express from "express";
 import Cliente from "../../../models/Cliente";
 
@@ -27,7 +28,7 @@ router.get('/:id', async(req,res)=>{
     })
 });
 
-// curl -UseBasicParsing -Method POST -Headers @{"Content-Type"= "application/json"} -Body '{"idUsuario": "test2", "usuario": "test", "password": "test", "cuil": "test", "cuit": "test", "email": "test", "fechaNacimiento": "2000,01,01", "direccion": "test", "telefono": "test", "razonSocial": "test"}' -URI http://localhost:3000/api/v1/cliente/
+// curl -UseBasicParsing -Method POST -Headers @{"Content-Type"= "application/json"} -Body '{"idUsuario": "test", "usuario": "test", "password": "test", "cuil": "test", "cuit": "test", "email": "test", "fechaNacimiento": "2000,01,01", "direccion": "test", "telefono": "test", "razonSocial": "test"}' -URI http://localhost:3000/api/v1/cliente/
 // newCliente
 
 router.post('/', async(req,res) => {
@@ -40,7 +41,7 @@ router.post('/', async(req,res) => {
     })
 });
 
-// curl -UseBasicParsing -Method PUT -Headers @{"Content-Type"= "application/json"} -Body '{"idUsuario": "test", "usuario": "cambio", "password": "test", "cuil": "test", "cuit": "test", "email": "test", "fechaNacimiento": "2000,01,01", "direccion": "test", "telefono": "cambio", "razonSocial": "cambio"}' -URI http://localhost:3000/api/v1/cliente/<id>
+// curl -UseBasicParsing -Method PUT -Headers @{"Content-Type"= "application/json"} -Body '{"idUsuario": "cambio", "usuario": "cambio", "password": "cambio", "cuil": "cambio", "cuit": "cambio", "email": "cambio", "fechaNacimiento": "2001,05,26", "direccion": "cambio", "telefono": "cambio", "razonSocial": "cambio"}' -URI http://localhost:3000/api/v1/cliente/<id>
 // updateCliente
 
 router.put('/:id',async (req,res)=>{

@@ -4,7 +4,7 @@ const TipoMascotaSchema = new mongoose.Schema( {
     idTipoMascota: String,
     nombre: String,
     tamanoRaza: String,
-    edad: Number
+    edad: String
 })
 
 module.exports = mongoose.model('TipoMascota', TipoMascotaSchema);

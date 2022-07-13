@@ -1,9 +1,10 @@
+// tested
 import express from "express";
 import Producto from "../../../models/Producto";
 
 const router = express.Router();
 
-// curl -UseBasicParsing -Method GET -URI http://localhost:3000/api/v1/producto
+// curl -UseBasicParsing -Method GET -URI http://localhost:3000/api/v1/producto/
 // getAll
 
 router.get('/', async(req, res) => {
@@ -27,7 +28,7 @@ router.get('/:id', async(req,res) => {
     })
 });
 
-// curl -UseBasicParsing -Method POST -Headers @{"Content-Type"="application/json"} -Body '{"marca":"test", "nombre":"test", "descripcion":"test", "peso":"test"}' -URI http://localhost:3000/api/v1/producto
+// curl -UseBasicParsing -Method POST -Headers @{"Content-Type"="application/json"} -Body '{"idProducto":"test", "marca":"test", "nombre":"test", "descripcion":"test", "peso":"10"}' -URI http://localhost:3000/api/v1/producto/
 // newProducto
 
 router.post('/', async(req, res)=>{
@@ -36,11 +37,11 @@ router.post('/', async(req, res)=>{
     return res.status(201).json({
         success: true,
         data: pro,
-        message: 'Producto agregado exitosamente'
+        message: "Producto agregado exitosamente"
     })
 });
 
-// curl -UseBasicParsing -Method PUT -Headers @{"Content-Type"= "application/json"} -Body '{"marca":"cambio", "nombre":"cambio", "descripcion":"cambio", "peso":"cambio"}' -URI http://localhost:3000/api/v1/producto/<id>
+// curl -UseBasicParsing -Method PUT -Headers @{"Content-Type"= "application/json"} -Body '{"idProducto":"cambio", "marca":"cambio", "nombre":"cambio", "descripcion":"cambio", "peso":"20"}' -URI http://localhost:3000/api/v1/producto/<id>
 // updateProducto
 
 router.put('/:id', async(req, res) => {
@@ -49,7 +50,7 @@ router.put('/:id', async(req, res) => {
     return res.status(200).json({
         success: true,
         data: {"_id": req.params.id},
-        message: 'Producto actualizado exitosamente'
+        message: "Producto actualizado exitosamente"
     })
 });
 
@@ -61,7 +62,7 @@ router.delete('/:id', async(req, res)=> {
     return res.status(200).json({
         success: true,
         data: {"_id": req.params.id},
-        message: 'Producto eliminado exitosamente'
+        message: "Producto eliminado exitosamente"
     })
 });
 
