@@ -27,6 +27,13 @@ router.get('/:id', async(req,res)=>{
     })
 });
 
+// getOneByUser
+
+router.get('/user/:user', async(req,res)=>{
+    let cliente = await Cliente.findOne({"usuario":req.params.user})
+    return res.status(200).json(cliente);
+});
+
 // curl -UseBasicParsing -Method POST -Headers @{"Content-Type"= "application/json"} -Body '{"idUsuario": "test", "usuario": "test", "password": "test", "cuil": "test", "cuit": "test", "email": "test", "fechaNacimiento": "2000,01,01", "direccion": "test", "telefono": "test", "razonSocial": "test"}' -URI http://localhost:3000/api/v1/cliente/
 // newCliente
 
