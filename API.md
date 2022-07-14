@@ -1,45 +1,41 @@
 # ttads-PampaNutricion-backend API Documentation
 
-## Sucursal
+## Localidad
 
+### Estructura
 ```
-GET /api/v1/sucursal    Deuelve la lista de todas las sucursales
-```
+{
+    "idLocalidad": String (autogenerado, no debe ser enviado por el usuario)
+    "codPostal": String,
+    "nombre": String
+}
 
-```
-GET /api/v1/sucursal/<id>   Devuelve una sucursal por ID.
-```
-
-```
-POST /api/v1/sucursal/  Crea una nueva sucursal
+Campos generados por Mongo
 
 {
-    "nombre": String,
-    "direccion": String,
-    "localidad": {type: Schema.Types.ObjectId, ref: 'Localidad'}
-    
-        {
-            "codPostal": String,
-            "nombre": String
-        }
+    "_id": String
+    "__v": Number (debe ser incrementado en 1 con cada petición PUT)
 }
 ```
 
-```
-PUT /api/v1/sucursal/<id>   Actualiza una sucursal por ID
+### Peticiones
 
-{
-    "nombre": String,
-    "direccion": String,
-    "localidad": {type: Schema.Types.ObjectId, ref: 'Localidad'}
-    
-        {
-            "codPostal": String,
-            "nombre": String
-        }
-}
+```
+GET /api/v1/localidad    Devuelve la lista de todas las localidades
 ```
 
 ```
-DELETE /api/v1/sucursal/<id>    Elimina una sucursal por ID
+GET /api/v1/localidad/<_id>   Devuelve una localidad por ID (generada por Mongo)
+```
+
+```
+POST /api/v1/localidad/  Crea una nueva localidad
+```
+
+```
+PUT /api/v1/localidad/<_id>   Actualiza una localidad por ID (generada por Mongo)
+```
+
+```
+DELETE /api/v1/localidad/<_id>    Elimina una localidad por ID (generada por Mongo)
 ```
