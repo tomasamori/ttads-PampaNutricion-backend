@@ -1,6 +1,6 @@
-// tested
 import express from "express";
 import Sucursal from "../../../models/Sucursal";
+import Localidad from "../../../models/Localidad";
 
 const router = express.Router();
 
@@ -8,7 +8,7 @@ const router = express.Router();
 // getAll
 
 router.get('/', async(req, res) => {
-    let sucursales = await Sucursal.find();
+    let sucursales = await Sucursal.find().populate('localidad');
     return res.status(200).json({
         success: true,
         data: sucursales,
@@ -20,7 +20,7 @@ router.get('/', async(req, res) => {
 // getOne
 
 router.get('/:id', async(req, res) => {
-    let suc = await Sucursal.findOne({"_id": req.params.id});
+    let suc = await Sucursal.findOne({"_id": req.params.id}).populate('localidad');
     return res.status(200).json({
         success:true,
         data: suc,
