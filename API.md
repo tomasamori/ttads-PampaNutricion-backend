@@ -17,6 +17,11 @@ POST /api/v1/sucursal/  Crea una nueva sucursal
     "nombre": String,
     "direccion": String,
     "localidad": {type: Schema.Types.ObjectId, ref: 'Localidad'}
+    
+        {
+            "codPostal": String,
+            "nombre": String
+        }
 }
 ```
 
