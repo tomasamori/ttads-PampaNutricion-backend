@@ -20,7 +20,7 @@ router.get('/', async(req, res) => {
 // getOne
 
 router.get('/:id', async(req,res) => {
-    let tm = await TipoMascota.findOne({"_id":req.params.id})
+    let tm = await TipoMascota.findOne({"idTipoMascota":req.params.id})
     return res.status(200).json({
         success:true,
         data: tm,
@@ -45,11 +45,11 @@ router.post('/', async(req, res)=>{
 // updateTipoMascota
 
 router.put('/:id', async(req, res) => {
-    let tm = await TipoMascota.findOne({"_id": req.params.id});
+    let tm = await TipoMascota.findOne({"idTipoMascota": req.params.id});
     await tm.update(req.body);
     return res.status(200).json({
         success: true,
-        data: {"_id": req.params.id},
+        data: {"idTipoMascota": req.params.id},
         message: "Tipo de Mascota actualizada exitosamente"
     })
 });
@@ -58,10 +58,10 @@ router.put('/:id', async(req, res) => {
 // deleteTipoMascota
 
 router.delete('/:id', async(req, res)=> {
-    await TipoMascota.deleteOne({"_id":req.params.id});
+    await TipoMascota.deleteOne({"idTipoMascota":req.params.id});
     return res.status(200).json({
         success: true,
-        data: {"_id": req.params.id},
+        data: {"idTipoMascota": req.params.id},
         message: "Tipo de Mascota eliminado exitosamente"
     })
 });

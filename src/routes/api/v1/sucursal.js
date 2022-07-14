@@ -20,7 +20,7 @@ router.get('/', async(req, res) => {
 // getOne
 
 router.get('/:id', async(req, res) => {
-    let suc = await Sucursal.findOne({"_id": req.params.id}).populate('localidad');
+    let suc = await Sucursal.findOne({"idSucursal": req.params.id}).populate('localidad');
     return res.status(200).json({
         success:true,
         data: suc,
@@ -45,11 +45,11 @@ router.post('/', async(req, res) => {
 // updateSucursal
 
 router.put('/:id', async(req, res) => {
-    let suc = await Sucursal.findOne({"_id": req.params.id});
+    let suc = await Sucursal.findOne({"idSucursal": req.params.id});
     await suc.update(req.body);
     return res.status(200).json({
         success: true,
-        data: {"_id": req.params.id},
+        data: {"idSucursal": req.params.id},
         message: "Sucursal actualizada exitosamente"
     })
 });
@@ -58,10 +58,10 @@ router.put('/:id', async(req, res) => {
 // deleteSucursal
 
 router.delete('/:id', async(req, res) => {
-    await Sucursal.deleteOne({"_id": req.params.id});
+    await Sucursal.deleteOne({"idSucursal": req.params.id});
     return res.status(200).json({
         success: true,
-        data: {"_id": req.params.id},
+        data: {"idSucursal": req.params.id},
         message: "Sucursal eliminada exitosamente"
     })
 });

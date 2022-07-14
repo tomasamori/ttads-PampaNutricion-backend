@@ -20,7 +20,7 @@ router.get('/', async(req, res) => {
 // getOne
 
 router.get('/:id', async(req, res) => {
-    let loc = await Localidad.findOne({"_id": req.params.id});
+    let loc = await Localidad.findOne({"idLocalidad": req.params.id});
     return res.status(200).json({
         success:true,
         data: loc,
@@ -45,11 +45,11 @@ router.post('/', async(req, res) => {
 // updateLocalidad
 
 router.put('/:id', async(req, res) => {
-    let loc = await Localidad.findOne({"_id": req.params.id});
+    let loc = await Localidad.findOne({"idLocalidad": req.params.id});
     await loc.update(req.body);
     return res.status(200).json({
         success: true,
-        data: {"_id": req.params.id},
+        data: {"idLocalidad": req.params.id},
         message: "Localidad actualizada exitosamente"
     })
 });
@@ -58,10 +58,10 @@ router.put('/:id', async(req, res) => {
 // deleteLocalidad
 
 router.delete('/:id', async(req, res) => {
-    await Localidad.deleteOne({"_id": req.params.id});
+    await Localidad.deleteOne({"idLocalidad": req.params.id});
     return res.status(200).json({
         success: true,
-        data: {"_id": req.params.id},
+        data: {"idLocalidad": req.params.id},
         message: "Localidad eliminada exitosamente"
     })
 });

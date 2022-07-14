@@ -1,4 +1,3 @@
-// tested
 import express from "express";
 import Cliente from "../../../models/Cliente";
 
@@ -20,7 +19,7 @@ router.get('/', async (req,res)=>{
 // getOne
 
 router.get('/:id', async(req,res)=>{
-    let cliente = await Cliente.findOne({"_id":req.params.id})
+    let cliente = await Cliente.findOne({"idUsuario":req.params.id})
     return res.status(200).json({
         success:true,
         data: cliente,
@@ -45,11 +44,11 @@ router.post('/', async(req,res) => {
 // updateCliente
 
 router.put('/:id',async (req,res)=>{
-    let cliente = await Cliente.findOne({"_id":req.params.id});
+    let cliente = await Cliente.findOne({"idUsuario":req.params.id});
     await cliente.update(req.body);
     return res.status(200).json({
         success:true,
-        data:{"_id":req.params.id},
+        data:{"idUsuario":req.params.id},
         message: "Cliente actualizado exitosamente"
     })
 });
@@ -58,10 +57,10 @@ router.put('/:id',async (req,res)=>{
 // deleteCliente
 
 router.delete('/:id', async(req, res) => {
-    await Cliente.deleteOne({"_id": req.params.id});
+    await Cliente.deleteOne({"idUsuario": req.params.id});
     return res.status(200).json({
         success: true,
-        data: {"_id": req.params.id},
+        data: {"idUsuario": req.params.id},
         message: "Cliente eliminado exitosamente"
     })
 });

@@ -19,7 +19,7 @@ router.get('/', async (req,res) => {
 // getOne
 
 router.get('/:id', async(req,res)=>{
-    let pro = await Proveedor.findOne({"_id":req.params.id})
+    let pro = await Proveedor.findOne({"idProveedor":req.params.id})
     return res.status(200).json({
         success:true,
         data: pro,
@@ -44,11 +44,11 @@ router.post('/', async (req, res)=>{
 // updateProveedor
 
 router.put('/:id', async(req, res) => {
-    let pro = await Proveedor.findOne({"_id": req.params.id});
+    let pro = await Proveedor.findOne({"idProveedor": req.params.id});
     await pro.update(req.body);
     return res.status(200).json({
         success: true,
-        data: {"_id": req.params.id},
+        data: {"idProveedor": req.params.id},
         message: "Proveedor actualizado exitosamente"
     })
 });
@@ -57,10 +57,10 @@ router.put('/:id', async(req, res) => {
 // deleteProveedor
 
 router.delete('/:id', async(req,res)=>{
-    await Proveedor.deleteOne({"_id":req.params.id});
+    await Proveedor.deleteOne({"idProveedor":req.params.id});
     return res.status(200).json({
         success: true,
-        data: {"_id": req.params.id},
+        data: {"idProveedor": req.params.id},
         message: "Proveedor eliminado exitosamente"
     })
 });

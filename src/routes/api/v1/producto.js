@@ -20,7 +20,7 @@ router.get('/', async(req, res) => {
 // getOne
 
 router.get('/:id', async(req,res) => {
-    let pro = await Producto.findOne({"_id":req.params.id}).populate('tipoMascota');
+    let pro = await Producto.findOne({"idProducto":req.params.id}).populate('tipoMascota');
     return res.status(200).json({
         success:true,
         data: pro,
@@ -45,11 +45,11 @@ router.post('/', async(req, res)=>{
 // updateProducto
 
 router.put('/:id', async(req, res) => {
-    let pro = await Producto.findOne({"_id": req.params.id});
+    let pro = await Producto.findOne({"idProducto": req.params.id});
     await pro.update(req.body);
     return res.status(200).json({
         success: true,
-        data: {"_id": req.params.id},
+        data: {"idProducto": req.params.id},
         message: "Producto actualizado exitosamente"
     })
 });
@@ -58,10 +58,10 @@ router.put('/:id', async(req, res) => {
 // deleteProducto
 
 router.delete('/:id', async(req, res)=> {
-    await Producto.deleteOne({"_id":req.params.id});
+    await Producto.deleteOne({"idProducto":req.params.id});
     return res.status(200).json({
         success: true,
-        data: {"_id": req.params.id},
+        data: {"idProducto": req.params.id},
         message: "Producto eliminado exitosamente"
     })
 });

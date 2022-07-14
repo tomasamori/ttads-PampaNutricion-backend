@@ -20,7 +20,7 @@ router.get('/', async (req,res)=>{
 // getOne
 
 router.get('/:id', async(req,res)=>{
-    let emp =await Empleado.findOne({"_id":req.params.id})
+    let emp =await Empleado.findOne({"idUsuario":req.params.id})
     return res.status(200).json({
         success:true,
         data: emp,
@@ -45,11 +45,11 @@ router.post('/', async(req,res)=>{
 // updateEmpleado
 
 router.put('/:id',async (req,res)=>{
-    let emp = await Empleado.findOne({"_id":req.params.id});
+    let emp = await Empleado.findOne({"idUsuario":req.params.id});
     await emp.update(req.body);
     return res.status(200).json({
         success:true,
-        data:{"_id":req.params.id},
+        data:{"idUsuario":req.params.id},
         message: "Empleado actualizado exitosamente"
     })
 });
@@ -58,10 +58,10 @@ router.put('/:id',async (req,res)=>{
 // deleteEmpleado
 
 router.delete('/:id',async (req,res)=>{
-    await Empleado.deleteOne({"_id":req.params.id});
+    await Empleado.deleteOne({"idUsuario":req.params.id});
     return res.status(200).json({
         success:true,
-        data:{"_id":req.params.id},
+        data:{"idUsuario":req.params.id},
         message: "Empleado eliminado exitosamente"
     })
 });
