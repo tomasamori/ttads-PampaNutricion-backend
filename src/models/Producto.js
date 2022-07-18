@@ -1,14 +1,13 @@
-const mongoose = require('mongoose');
-import router from '../routes/api/v1/producto';
-const {Schema, model} = mongoose;
+import {Schema, model} from 'mongoose';
 
-const ProductoSchema = new mongoose.Schema( {
-    idProducto: String,
+const ProductoSchema = new Schema({
     marca: String,
     nombre: String,
     descripcion: String,
-    peso: Number,
-    tipoMascota: {type: Schema.Types.ObjectId, ref: 'TipoMascota'}
+    peso: String
+},{
+    timestamps: true,
+    versionKey: false
 });
 
-module.exports = mongoose.model('Producto', ProductoSchema);
+export default model('Producto', ProductoSchema);
