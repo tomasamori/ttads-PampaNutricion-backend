@@ -2,7 +2,7 @@ import express from 'express';
 
 import cliente from './cliente';
 import empleado from './empleado';
-import localidad from './localidad';
+import localidad from './localidad.routes';
 import producto from './producto.routes';
 import proveedor from './proveedor';
 import sucursal from './sucursal';
