@@ -14,5 +14,4 @@ router.put('/:id', [authJwt.verifyToken, authJwt.isModerator], productCtrl.updat
 
 router.delete('/:id', [authJwt.verifyToken, authJwt.isAdmin], productCtrl.deleteProductById);
 
-
 export default router;
