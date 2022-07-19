@@ -1,5 +1,5 @@
 import express from "express";
-import routes from "./routes/api/v1/index";
+import routes from "./routes/api/v1/index.routes";
 import morgan from "morgan";
 import cors from "cors";
 import {createRoles} from "./libs/initialSetup";
