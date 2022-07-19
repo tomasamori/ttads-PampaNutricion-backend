@@ -4,7 +4,7 @@ import cliente from './cliente';
 import empleado from './empleado';
 import localidad from './localidad.routes';
 import producto from './producto.routes';
-import proveedor from './proveedor';
+import proveedor from './proveedor.routes';
 import sucursal from './sucursal';
 import tipoMascota from './tipoMascota';
 import auth from './auth.routes';
