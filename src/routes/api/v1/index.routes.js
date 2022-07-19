@@ -9,6 +9,7 @@ import sucursal from './sucursal.routes';
 import tipoMascota from './tipoMascota.routes';
 import auth from './auth.routes';
 import usuario from './usuario.routes';
+import precio from './precios.routes';
 
 const router = express.Router();
 
@@ -21,5 +22,6 @@ router.use('/sucursal', sucursal);
 router.use('/tipoMascota', tipoMascota);
 router.use('/auth', auth);
 router.use('/usuario', usuario);
+router.use('/precio', precio);
 
 export default router;
