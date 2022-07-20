@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import config from '../config';
-import Cliente from '../models/Cliente';
+import Usuario from '../models/Usuario';
 import Rol from '../models/Rol';
 
 export const verifyToken = async (req, res, next) => {
@@ -13,8 +13,8 @@ export const verifyToken = async (req, res, next) => {
         const decoded = jwt.verify(token, config.SECRET);
         req.id = decoded.id;
 
-        const cliente = await Cliente.findById(req.id, {password: 0});
-        if (!cliente) return res.status(404).json({message: 'El usuario no existe'});
+        const usuario = await Usuario.findById(req.id, {password: 0});
+        if (!usuario) return res.status(404).json({message: 'El usuario no existe'});
 
         next()
     } catch (error) {
@@ -22,25 +22,25 @@ export const verifyToken = async (req, res, next) => {
     }
 };
 
-export const isModerator = async (req, res, next) => {
+export const isEmpleado = async (req, res, next) => {
 
-    const cliente = await Cliente.findById(req.id);
-    const roles = await Rol.find({_id: {$in: cliente.roles}});
+    const usuario = await Usuario.findById(req.id);
+    const roles = await Rol.find({_id: {$in: usuario.roles}});
 
     for (let i = 0; i < roles.length; i++) {
-        if (roles[i].name === 'moderador') {
+        if (roles[i].name === 'empleado') {
             next();
             return;
         }
     }
-    return res.status(403).json({message: 'Requiere rol de moderador'});
+    return res.status(403).json({message: 'Requiere rol de empleado'});
 
 };
 
 export const isAdmin = async (req, res, next) => {
 
-    const cliente = await Cliente.findById(req.id);
-    const roles = await Rol.find({_id: {$in: cliente.roles}});
+    const usuario = await Usuario.findById(req.id);
+    const roles = await Rol.find({_id: {$in: usuario.roles}});
 
     for (let i = 0; i < roles.length; i++) {
         if (roles[i].name === 'admin') {
@@ -50,4 +50,4 @@ export const isAdmin = async (req, res, next) => {
     }
     return res.status(403).json({message: 'Requiere rol de administrador'});
 
-}
+};

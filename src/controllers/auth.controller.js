@@ -1,4 +1,4 @@
-import Cliente from '../models/Cliente';
+import Usuario from '../models/Usuario';
 import jwt from 'jsonwebtoken'
 import config from '../config';
 import Rol from '../models/Rol';
@@ -7,25 +7,25 @@ export const signUp = async(req, res) => {
 
     const {usuario, email, password, roles} = req.body;
 
-    const newCliente = new Cliente({
+    const newUsuario = new Usuario({
         usuario,
         email,
-        password: await Cliente.encryptPassword(password)
+        password: await Usuario.encryptPassword(password)
     });
 
     if (roles) {
         const foundRoles = await Rol.find({name: {$in: roles}});
-        newCliente.roles = foundRoles.map(rol => rol._id);
+        newUsuario.roles = foundRoles.map(rol => rol._id);
     }
     else
     {
         const rol = await Rol.findOne({name: "cliente"});
-        newCliente.roles = [rol._id];
+        newUsuario.roles = [rol._id];
     }
 
-    const savedCliente = await newCliente.save();
+    const savedUsuario = await newUsuario.save();
 
-    const token = jwt.sign({id: savedCliente._id},config.SECRET,{
+    const token = jwt.sign({id: savedUsuario._id},config.SECRET,{
         expiresIn: 86400 // 24 hours
     });
 
@@ -34,17 +34,17 @@ export const signUp = async(req, res) => {
 
 export const signIn = async(req, res) => {
 
-    const clienteFound = await Cliente.findOne({email: req.body.email}).populate('roles');
+    const usuarioFound = await Usuario.findOne({email: req.body.email}).populate('roles');
 
-    if (!clienteFound) {
+    if (!usuarioFound) {
         return res.status(400).json({message: "No se encontró el usuario"});
     }
 
-    const matchPassword = await Cliente.comparePassword(req.body.password, clienteFound.password);
+    const matchPassword = await Usuario.comparePassword(req.body.password, usuarioFound.password);
 
     if (!matchPassword) return res.status(401).json({token: 'null', message: "Contraseña invalida"});
 
-    const token = jwt.sign({id: clienteFound._id}, config.SECRET, {
+    const token = jwt.sign({id: usuarioFound._id}, config.SECRET, {
         expiresIn: 86400 // 24 hours
     })
 

@@ -1,13 +1,13 @@
 import {ROLES} from '../models/Rol';
-import Cliente from "../models/Cliente";
+import Usuario from "../models/Usuario";
 
 export const checkDuplicateUsernameOrEmail = async (req, res, next) => {
 
-    const cliente = await Cliente.findOne({usuario: req.body.usuario});
-    if (cliente) return res.status(400).json({message: 'El usuario ya existe'});
+    const usuario = await Usuario.findOne({usuario: req.body.usuario});
+    if (usuario) return res.status(400).json({message: 'El usuario se encuentra en uso'});
 
-    const email = await Cliente.findOne({email: req.body.email});
-    if (email) return res.status(400).json({message: 'El email ya existe'});
+    const email = await Usuario.findOne({email: req.body.email});
+    if (email) return res.status(400).json({message: 'El email se encuentra en uso'});
 
     next();
 

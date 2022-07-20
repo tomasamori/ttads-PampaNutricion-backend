@@ -1,7 +1,7 @@
 import express from 'express';
 
-import cliente from './cliente';
-import empleado from './empleado';
+import cliente from './cliente.routes';
+import empleado from './empleado.routes';
 import localidad from './localidad.routes';
 import producto from './producto.routes';
 import proveedor from './proveedor.routes';
