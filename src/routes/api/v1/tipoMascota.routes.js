@@ -7,10 +7,10 @@ router.get('/', tipoMascotaCtrl.getTipoMascotas);
 
 router.get('/:id', tipoMascotaCtrl.getTipoMascotaById);
 
-router.post('/', tipoMascotaCtrl.createTipoMascota);
+router.post('/'/*, [authJwt.verifyToken, authJwt.isEmpleado]*/, tipoMascotaCtrl.createTipoMascota);
 
-router.put('/:id', tipoMascotaCtrl.updateTipoMascotaById);
+router.put('/:id'/*, [authJwt.verifyToken, authJwt.isEmpleado]*/, tipoMascotaCtrl.updateTipoMascotaById);
 
-router.delete('/:id', tipoMascotaCtrl.deleteTipoMascotaById);
+router.delete('/:id'/*, [authJwt.verifyToken, authJwt.isAdmin]*/, tipoMascotaCtrl.deleteTipoMascotaById);
 
 export default router;

@@ -8,10 +8,10 @@ router.get('/', productCtrl.getProducts);
 
 router.get('/:id', productCtrl.getProductById);
 
-router.post('/', [authJwt.verifyToken, authJwt.isEmpleado], productCtrl.createProduct);
+router.post('/'/*, [authJwt.verifyToken, authJwt.isEmpleado]*/, productCtrl.createProduct);
 
-router.put('/:id', [authJwt.verifyToken, authJwt.isEmpleado], productCtrl.updateProductById);
+router.put('/:id'/*, [authJwt.verifyToken, authJwt.isEmpleado]*/, productCtrl.updateProductById);
 
-router.delete('/:id', [authJwt.verifyToken, authJwt.isAdmin], productCtrl.deleteProductById);
+router.delete('/:id'/*, [authJwt.verifyToken, authJwt.isAdmin]*/, productCtrl.deleteProductById);
 
 export default router;

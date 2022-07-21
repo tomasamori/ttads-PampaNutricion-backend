@@ -7,10 +7,10 @@ router.get('/', sucursalCtrl.getSucursales);
 
 router.get('/:id', sucursalCtrl.getSucursalById);
 
-router.post('/', sucursalCtrl.createSucursal);
+router.post('/'/*, [authJwt.verifyToken, authJwt.isEmpleado]*/, sucursalCtrl.createSucursal);
 
-router.put('/:id', sucursalCtrl.updateSucursalById);
+router.put('/:id'/*, [authJwt.verifyToken, authJwt.isEmpleado]*/, sucursalCtrl.updateSucursalById);
 
-router.delete('/:id', sucursalCtrl.deleteSucursalById);
+router.delete('/:id'/*, [authJwt.verifyToken, authJwt.isAdmin]*/, sucursalCtrl.deleteSucursalById);
 
 export default router;

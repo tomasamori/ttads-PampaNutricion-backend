@@ -7,10 +7,10 @@ router.get('/', precioCtrl.getPrecios);
 
 router.get('/:id', precioCtrl.getPrecioById);
 
-router.post('/', precioCtrl.createPrecio);
+router.post('/'/*, [authJwt.verifyToken, authJwt.isEmpleado]*/, precioCtrl.createPrecio);
 
-router.put('/:id', precioCtrl.updatePrecioById);
+router.put('/:id'/*, [authJwt.verifyToken, authJwt.isEmpleado]*/, precioCtrl.updatePrecioById);
 
-router.delete('/:id', precioCtrl.deletePrecioById);
+router.delete('/:id'/*, [authJwt.verifyToken, authJwt.isAdmin]*/, precioCtrl.deletePrecioById);
 
 export default router;

@@ -7,10 +7,10 @@ router.get('/', proveedorCtrl.getProveedores);
 
 router.get('/:id', proveedorCtrl.getProveedorById);
 
-router.post('/', proveedorCtrl.createProveedor);
+router.post('/'/*, [authJwt.verifyToken, authJwt.isEmpleado]*/, proveedorCtrl.createProveedor);
 
-router.put('/:id', proveedorCtrl.updateProveedorById);
+router.put('/:id'/*, [authJwt.verifyToken, authJwt.isEmpleado]*/, proveedorCtrl.updateProveedorById);
 
-router.delete('/:id', proveedorCtrl.deleteProveedorById);
+router.delete('/:id'/*, [authJwt.verifyToken, authJwt.isAdmin]*/, proveedorCtrl.deleteProveedorById);
 
 export default router;

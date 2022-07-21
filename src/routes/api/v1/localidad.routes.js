@@ -7,10 +7,10 @@ router.get('/', localidadCtrl.getLocalidades);
 
 router.get('/:id', localidadCtrl.getLocalidadById);
 
-router.post('/', localidadCtrl.createLocalidad);
+router.post('/'/*, [authJwt.verifyToken, authJwt.isEmpleado]*/, localidadCtrl.createLocalidad);
 
-router.put('/:id', localidadCtrl.updateLocalidadById);
+router.put('/:id'/*, [authJwt.verifyToken, authJwt.isEmpleado]*/, localidadCtrl.updateLocalidadById);
 
-router.delete('/:id', localidadCtrl.deleteLocalidadById);
+router.delete('/:id'/*, [authJwt.verifyToken, authJwt.isAdmin]*/, localidadCtrl.deleteLocalidadById);
 
 export default router;
