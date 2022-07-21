@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken'
 import config from '../config';
 import Rol from '../models/Rol';
 
-export const signUp = async(req, res) => {
+export const signUp = async(req, res, next) => {
 
     const {usuario, email, password, roles} = req.body;
 
@@ -13,23 +13,25 @@ export const signUp = async(req, res) => {
         password: await Usuario.encryptPassword(password)
     });
 
-    if (roles) {
-        const foundRoles = await Rol.find({name: {$in: roles}});
-        newUsuario.roles = foundRoles.map(rol => rol._id);
+    if (!roles) {
+        const rol = await Rol.findOne({name: "cliente"});
+        newUsuario.roles = [rol._id];
+
+        const savedUsuario = await newUsuario.save();
+
+        const token = jwt.sign({id: savedUsuario._id},config.SECRET,{
+            expiresIn: 86400 // 24 hours
+        });
+
+        res.status(200).json({token})
     }
     else
     {
-        const rol = await Rol.findOne({name: "cliente"});
-        newUsuario.roles = [rol._id];
+        res.status(404).json({message: 'No es posible asignar roles al nuevo usuario'});
+        next();
+        // const foundRoles = await Rol.find({name: {$in: roles}});
+        // newUsuario.roles = foundRoles.map(rol => rol._id);
     }
-
-    const savedUsuario = await newUsuario.save();
-
-    const token = jwt.sign({id: savedUsuario._id},config.SECRET,{
-        expiresIn: 86400 // 24 hours
-    });
-
-    res.status(200).json({token})
 }
 
 export const signIn = async(req, res) => {
