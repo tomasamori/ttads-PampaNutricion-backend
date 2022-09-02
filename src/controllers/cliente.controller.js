@@ -11,7 +11,7 @@ export const createCliente = async (req, res) => {
 
 export const getClientes = async (req, res) => {
 
-    const clientes = await Cliente.find();
+    const clientes = await Cliente.find().populate('usuario');
     res.status(200).json(clientes);
 
 };
