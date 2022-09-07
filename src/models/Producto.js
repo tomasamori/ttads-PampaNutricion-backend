@@ -4,7 +4,8 @@ const ProductoSchema = new Schema({
     marca: String,
     nombre: String,
     descripcion: String,
-    peso: String
+    peso: String,
+    imgUrl: String
 },{
     timestamps: true,
     versionKey: false
