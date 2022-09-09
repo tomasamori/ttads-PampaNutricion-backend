@@ -5,7 +5,9 @@ const ProductoSchema = new Schema({
     nombre: String,
     descripcion: String,
     peso: String,
-    imgUrl: String
+    imgUrl:String,
+    categoria:String,
+    promo: Boolean
 },{
     timestamps: true,
     versionKey: false
