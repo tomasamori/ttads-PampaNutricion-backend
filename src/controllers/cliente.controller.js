@@ -18,7 +18,7 @@ export const getClientes = async (req, res) => {
 
 export const getClienteById = async (req, res) => {
 
-    const cliente = await Cliente.findById(req.params.id);
+    const cliente = await Cliente.findById(req.params.id).populate('usuario');
     res.status(200).json(cliente);
 
 };

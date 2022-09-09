@@ -6,6 +6,8 @@ const ProductoSchema = new Schema({
     descripcion: String,
     peso: String,
     imgUrl:String,
+    tipoMascota: {type: Schema.Types.ObjectId, ref: 'TipoMascota'},
+    precio: {type: Schema.Types.ObjectId, ref: 'Precio'},
     categoria:String,
     promo: Boolean
 },{

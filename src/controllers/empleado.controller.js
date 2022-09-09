@@ -18,7 +18,7 @@ export const getEmpleados = async (req, res) => {
 
 export const getEmpleadoById = async (req, res) => {
 
-    const empleado = await Empleado.findById(req.params.id);
+    const empleado = await Empleado.findById(req.params.id).populate('usuario');
     res.status(200).json(empleado);
 
 };
