@@ -9,7 +9,7 @@ const ProductoSchema = new Schema({
     tipoMascota: {type: Schema.Types.ObjectId, ref: 'TipoMascota'},
     precio: {type: Schema.Types.ObjectId, ref: 'Precio'},
     categoria:String,
-    promo: Boolean
+    promo: Number
 },{
     timestamps: true,
     versionKey: false
