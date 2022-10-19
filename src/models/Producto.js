@@ -7,13 +7,11 @@ const ProductoSchema = new Schema({
     peso: String,
     imgUrl:String,
     tipoMascota: {type: Schema.Types.ObjectId, ref: 'TipoMascota'},
-    //precio: {type: Schema.Types.ObjectId, ref: 'Precio'},
-    precio: String,
-    categoria:String,
+    precio: {type: Schema.Types.ObjectId, ref: 'Precio'},
     promo: Number
 },{
     timestamps: true,
     versionKey: false
 });
 
-export default model('Producto', ProductoSchema);;
+export default model('Producto', ProductoSchema);
