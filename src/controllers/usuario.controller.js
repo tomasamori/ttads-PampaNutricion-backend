@@ -5,12 +5,17 @@ import Rol from '../models/Rol';
 
 export const createUsuario = async (req, res) => {
 
-    const {usuario, email, password, roles} = req.body;
+    const {usuario, password, email, roles, cuil, nombre, fechaNacimiento, direccion, telefono} = req.body;
 
     const newUsuario = new Usuario({
         usuario,
         email,
-        password: await Usuario.encryptPassword(password)
+        password: await Usuario.encryptPassword(password),
+        cuil,
+        nombre,
+        fechaNacimiento,
+        direccion,
+        telefono
     });
 
     if (roles) {
