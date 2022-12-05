@@ -1,7 +1,5 @@
 import express from 'express';
 
-import cliente from './cliente.routes';
-import empleado from './empleado.routes';
 import localidad from './localidad.routes';
 import producto from './producto.routes';
 import proveedor from './proveedor.routes';
@@ -13,8 +11,6 @@ import precio from './precios.routes';
 
 const router = express.Router();
 
-router.use('/cliente', cliente);
-router.use('/empleado', empleado);
 router.use('/localidad', localidad);
 router.use('/producto', producto);
 router.use('/proveedor', proveedor);
