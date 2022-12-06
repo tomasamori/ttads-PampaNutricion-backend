@@ -1,6 +1,7 @@
-import mongoose from "mongoose";
-import { MONGODB_URI } from "./config"
+import mongoose from 'mongoose';
 
-mongoose.connect(MONGODB_URI)
-    .then(db => console.log('Database is connected to', db.connection.name))
-    .catch(error => console.log(error))
+export const dbConnect = async (url) => {
+    mongoose.connect(url)
+        .then(db => console.log('Database is connected to', db.connection.name))
+        .catch(error => console.log(error))
+}
