@@ -2,8 +2,8 @@ import Precio from '../models/Precio';
 
 export const createPrecio = async (req, res) => {
 
-    const {fechaDesde, valor} = req.body;
-    const newPrecio = new Precio({fechaDesde, valor});
+    const {producto, fechaDesde, valor} = req.body;
+    const newPrecio = new Precio({producto, fechaDesde, valor});
     const precioSaved = await newPrecio.save();
     res.status(201).json(precioSaved);
 

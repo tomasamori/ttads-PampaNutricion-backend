@@ -4,10 +4,10 @@ const ProductoSchema = new Schema({
     marca: String,
     nombre: String,
     descripcion: String,
-    peso: String,
-    imgUrl:String,
+    peso: Number,
+    imgUrl: String,
     tipoMascota: {type: Schema.Types.ObjectId, ref: 'TipoMascota'},
-    precio: {type: Schema.Types.ObjectId, ref: 'Precio'},
+    precio: Number,
     promo: Number
 },{
     timestamps: true,

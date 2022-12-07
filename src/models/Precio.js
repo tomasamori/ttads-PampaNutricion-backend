@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
+const {Schema} = require("mongoose");
 
 const PrecioSchema = new mongoose.Schema( {
+    producto: {type: Schema.Types.ObjectId, ref: 'Producto'},
     fechaDesde: Date,
     valor: Number
 }, {
