@@ -5,13 +5,20 @@ import Rol from '../models/Rol';
 
 export const signUp = async(req, res, next) => {
 
-    const {usuario, email, password, roles} = req.body;
+    const {usuario, email, password, roles, cuil, nombre, fechaNacimiento, direccion, telefono} = req.body;
 
     const newUsuario = new Usuario({
         usuario,
         email,
-        password: await Usuario.encryptPassword(password)
+        password: await Usuario.encryptPassword(password),
+        cuil,
+        nombre,
+        fechaNacimiento,
+        direccion,
+        telefono
     });
+
+    // for security reasons, we don't want to recieve the roles from the register form
 
     if (!roles) {
         const rol = await Rol.findOne({name: "cliente"});
