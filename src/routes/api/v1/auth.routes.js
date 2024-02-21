@@ -8,4 +8,8 @@ router.post('/signup',[verifySignUp.checkDuplicateUsernameOrEmail, verifySignUp.
 
 router.post('/signin', authCtrl.signIn);
 
+router.post('/forgot-password', authCtrl.forgotPassword);
+
+router.post('/reset-password/:token', authCtrl.resetPassword);
+
 export default router;

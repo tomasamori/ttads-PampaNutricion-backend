@@ -10,7 +10,8 @@ const UsuarioSchema = new Schema({
     nombre: String,
     fechaNacimiento: Date,
     direccion: String,
-    telefono: String
+    telefono: String,
+    resetLink: {data: String, default: ''}
 }, {
     timestamps: true,
     versionKey: false,
