@@ -5,7 +5,7 @@ const UsuarioSchema = new Schema({
     usuario: {type: String, unique: true, required: true},
     password: {type: String, required: true},
     email: {type: String, unique: true, required: true},
-    roles: [{type: Schema.Types.ObjectId, ref: 'Rol'}],
+    rol: {type: Schema.Types.ObjectId, ref: 'Rol'},
     cuil: String,
     nombre: String,
     fechaNacimiento: Date,
