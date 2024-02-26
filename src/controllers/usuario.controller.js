@@ -5,7 +5,7 @@ import Rol from '../models/Rol';
 
 export const createUsuario = async (req, res) => {
 
-    const {usuario, password, email, roles, cuil, nombre, fechaNacimiento, direccion, telefono} = req.body;
+    const {usuario, password, email, rol, cuil, nombre, fechaNacimiento, direccion, telefono} = req.body;
 
     const newUsuario = new Usuario({
         usuario,
@@ -18,14 +18,14 @@ export const createUsuario = async (req, res) => {
         telefono
     });
 
-    if (roles) {
-        const foundRoles = await Rol.find({name: {$in: roles}});
-        newUsuario.roles = foundRoles.map(rol => rol._id);
+    if (rol) {
+        const foundRol = await Rol.findOne({name: rol});
+        newUsuario.rol = foundRol._id;
     }
     else
     {
         const rol = await Rol.findOne({name: "cliente"});
-        newUsuario.roles = [rol._id];
+        newUsuario.rol = rol._id;
     }
 
     const savedUsuario = await newUsuario.save();
@@ -40,14 +40,14 @@ export const createUsuario = async (req, res) => {
 
 export const getUsuarios = async (req, res) => {
 
-    const usuarios = await Usuario.find().populate('roles');
+    const usuarios = await Usuario.find().populate('rol');
     res.status(200).json(usuarios);
 
 };
 
 export const getUsuarioById = async (req, res) => {
 
-    const usuario = await Usuario.findById(req.params.id).populate('roles');
+    const usuario = await Usuario.findById(req.params.id).populate('rol');
     res.status(200).json(usuario);
 
 };
