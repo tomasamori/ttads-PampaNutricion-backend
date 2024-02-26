@@ -15,7 +15,11 @@ export const createOrder = async (req, res) => {
 // Get all orders
 export const getOrders = async (req, res) => {
   try {
-    const orders = await Pedido.find().populate('usuario').populate('productos');
+    const orders = await Pedido.find().populate({
+      path: 'usuario',
+      populate: { path: 'rol', select: '_id name' }
+    })
+      .populate('productos');
     res.status(200).json(orders);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -25,7 +29,11 @@ export const getOrders = async (req, res) => {
 // Get an order by ID
 export const getOrderById = async (req, res) => {
   try {
-    const order = await Pedido.findById(req.params.id).populate('usuario').populate('productos');
+    const order = await Pedido.findById(req.params.id).populate({
+      path: 'usuario',
+      populate: { path: 'rol', select: '_id name' }
+    })
+      .populate('productos');
     if (!order) {
       return res.status(404).json({ message: 'Pedido no encontrado' });
     }
@@ -65,7 +73,11 @@ export const deleteOrderById = async (req, res) => {
 // Get orders by user ID
 export const getOrdersByUserId = async (req, res) => {
   try {
-    const orders = await Pedido.find({ usuario: req.params.id }).populate('usuario').populate('productos');
+    const orders = await Pedido.find({ usuario: req.params.id }).populate({
+      path: 'usuario',
+      populate: { path: 'rol', select: '_id name' }
+    })
+      .populate('productos');
     res.status(200).json(orders);
   } catch (error) {
     res.status(500).json({ message: error.message });
