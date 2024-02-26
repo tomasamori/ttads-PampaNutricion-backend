@@ -61,3 +61,13 @@ export const deleteOrderById = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+// Get orders by user ID
+export const getOrdersByUserId = async (req, res) => {
+  try {
+    const orders = await Pedido.find({ usuario: req.params.id }).populate('usuario').populate('productos');
+    res.status(200).json(orders);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}

@@ -8,6 +8,8 @@ router.get('/', orderCtrl.getOrders);
 
 router.get('/:id', orderCtrl.getOrderById);
 
+router.get('/usuario/:id', orderCtrl.getOrdersByUserId);
+
 router.post('/'/*, [authJwt.verifyToken, authJwt.isEmpleado]*/, orderCtrl.createOrder);
 
 router.put('/:id'/*, [authJwt.verifyToken, authJwt.isEmpleado]*/, orderCtrl.updateOrderById);
