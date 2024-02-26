@@ -27,12 +27,13 @@ export const signUp = async (req, res, next) => {
 
         const savedUsuario = await newUsuario.save();
         const savedUsuarioId = savedUsuario._id;
+        const savedUsuarioRol = savedUsuario.rol.name;
 
         const token = jwt.sign({ id: savedUsuario._id }, config.SECRET, {
             expiresIn: 86400 // 24 hours
         });
 
-        res.status(200).json({ token, savedUsuarioId })
+        res.status(200).json({ token, savedUsuarioId, savedUsuarioRol });
     }
     else {
         res.status(404).json({ message: 'No es posible asignar roles al nuevo usuario' });
@@ -45,6 +46,7 @@ export const signUp = async (req, res, next) => {
 export const signIn = async (req, res) => {
 
     const usuarioFound = await Usuario.findOne({ email: req.body.email }).populate('rol');
+    console.log(usuarioFound);
 
     if (!usuarioFound) {
         return res.status(400).json({ message: "No se encontró el usuario" });
@@ -52,6 +54,7 @@ export const signIn = async (req, res) => {
 
     const matchPassword = await Usuario.comparePassword(req.body.password, usuarioFound.password);
     const usuarioFoundId = usuarioFound._id;
+    const usuarioFoundRol = usuarioFound.rol.name;
 
     if (!matchPassword) return res.status(401).json({ token: 'null', message: "Contraseña invalida" });
 
@@ -59,7 +62,7 @@ export const signIn = async (req, res) => {
         expiresIn: 86400 // 24 hours
     })
 
-    res.json({ token, usuarioFoundId });
+    res.json({ token, usuarioFoundId, usuarioFoundRol });
 
 }
 
