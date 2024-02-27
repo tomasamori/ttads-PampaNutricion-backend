@@ -49,6 +49,8 @@ export const signIn = async (req, res) => {
     const matchPassword = await Usuario.comparePassword(req.body.password, usuarioFound.password);
     const usuarioFoundId = usuarioFound._id;
     const usuarioFoundRol = usuarioFound.rol.name;
+    const usuarioFoundNombre = usuarioFound.nombre;
+    const usuarioFoundCuil = usuarioFound.cuil;
 
     if (!matchPassword) return res.status(401).json({ token: 'null', message: "Contraseña invalida" });
 
@@ -56,7 +58,7 @@ export const signIn = async (req, res) => {
         expiresIn: 86400 // 24 hours
     })
 
-    res.json({ token, usuarioFoundId, usuarioFoundRol });
+    res.json({ token, usuarioFoundId, usuarioFoundRol, usuarioFoundNombre, usuarioFoundCuil});
 
 }
 
