@@ -8,46 +8,66 @@ export const verifyToken = async (req, res, next) => {
     try {
         const token = req.headers["x-access-token"];
 
-        if (!token) return res.status(403).json({message: 'No se proporcionó el token'});
+        if (!token) return res.status(403).json({ message: 'No se proporcionó el token' });
 
         const decoded = jwt.verify(token, config.SECRET);
         req.id = decoded.id;
 
-        const usuario = await Usuario.findById(req.id, {password: 0});
-        if (!usuario) return res.status(404).json({message: 'El usuario no existe'});
+        const usuario = await Usuario.findById(req.id, { password: 0 });
+        if (!usuario) return res.status(404).json({ message: 'El usuario no existe' });
 
         next()
     } catch (error) {
-        return res.status(401).json({message: 'No autorizado'});
+        return res.status(401).json({ message: 'No autorizado' });
     }
 };
 
 export const isEmpleado = async (req, res, next) => {
+    const id = req.headers["id"];
 
-    const usuario = await Usuario.findById(req.id);
-    const roles = await Rol.find({_id: {$in: usuario.roles}});
-
-    for (let i = 0; i < roles.length; i++) {
-        if (roles[i].name === 'empleado') {
-            next();
-            return;
+    try {
+        const usuario = await Usuario.findById(id);
+        if (!usuario) {
+            return res.status(404).json({ message: 'Usuario no encontrado' });
         }
-    }
-    return res.status(403).json({message: 'Requiere rol de empleado'});
 
+        const rolEmpleado = await Rol.findOne({ name: "empleado" });
+        if (!rolEmpleado) {
+            return res.status(404).json({ message: 'Rol de empleado no encontrado' });
+        }
+
+        if (usuario.rol.toString() === rolEmpleado._id.toString()) {
+            next();
+        } else {
+            return res.status(403).json({ message: 'Requiere rol de empleado' });
+        }
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: 'Error interno del servidor' });
+    }
 };
 
 export const isAdmin = async (req, res, next) => {
+    const id = req.headers["id"];
 
-    const usuario = await Usuario.findById(req.id);
-    const roles = await Rol.find({_id: {$in: usuario.roles}});
-
-    for (let i = 0; i < roles.length; i++) {
-        if (roles[i].name === 'admin') {
-            next();
-            return;
+    try {
+        const usuario = await Usuario.findById(id);
+        if (!usuario) {
+            return res.status(404).json({ message: 'Usuario no encontrado' });
         }
-    }
-    return res.status(403).json({message: 'Requiere rol de administrador'});
 
+        const rolAdmin = await Rol.findOne({ name: "admin" });
+        if (!rolAdmin) {
+            return res.status(404).json({ message: 'Rol de administrador no encontrado' });
+        }
+
+        if (usuario.rol.toString() === rolAdmin._id.toString()) {
+            next();
+        } else {
+            return res.status(403).json({ message: 'Requiere rol de administrador' });
+        }
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: 'Error interno del servidor' });
+    }
 };

@@ -26,14 +26,8 @@ export const signUp = async (req, res, next) => {
         newUsuario.rol = [foundRol._id];
 
         const savedUsuario = await newUsuario.save();
-        const savedUsuarioId = savedUsuario._id;
-        const savedUsuarioRol = savedUsuario.rol.name;
-
-        const token = jwt.sign({ id: savedUsuario._id }, config.SECRET, {
-            expiresIn: 86400 // 24 hours
-        });
-
-        res.status(200).json({ token, savedUsuarioId, savedUsuarioRol });
+        
+        res.status(200).json({ message: 'Usuario creado exitosamente' });
     }
     else {
         res.status(404).json({ message: 'No es posible asignar roles al nuevo usuario' });
