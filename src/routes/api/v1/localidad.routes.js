@@ -7,6 +7,8 @@ router.get('/', localidadCtrl.getLocalidades);
 
 router.get('/:id', localidadCtrl.getLocalidadById);
 
+router.get('/:id/sucursales', localidadCtrl.findSucursalByLocalidad);
+
 router.post('/'/*, [authJwt.verifyToken, authJwt.isEmpleado]*/, localidadCtrl.createLocalidad);
 
 router.put('/:id'/*, [authJwt.verifyToken, authJwt.isEmpleado]*/, localidadCtrl.updateLocalidadById);
