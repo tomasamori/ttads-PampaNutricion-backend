@@ -22,7 +22,7 @@ export const verifyToken = async (req, res, next) => {
     }
 };
 
-export const isEmpleado = async (req, res, next) => {
+export const isEmpleadoOrAdmin = async (req, res, next) => {
     const id = req.headers["id"];
 
     try {
@@ -32,11 +32,12 @@ export const isEmpleado = async (req, res, next) => {
         }
 
         const rolEmpleado = await Rol.findOne({ name: "empleado" });
-        if (!rolEmpleado) {
+        const rolAdmin = await Rol.findOne({ name: "admin" });
+        if (!rolEmpleado && !rolAdmin) {
             return res.status(404).json({ message: 'Rol de empleado no encontrado' });
         }
 
-        if (usuario.rol.toString() === rolEmpleado._id.toString()) {
+        if (usuario.rol.toString() === rolEmpleado._id.toString() || usuario.rol.toString() === rolAdmin._id.toString()){
             next();
         } else {
             return res.status(403).json({ message: 'Requiere rol de empleado' });
