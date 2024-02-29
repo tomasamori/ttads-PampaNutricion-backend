@@ -5,66 +5,85 @@ import Rol from '../models/Rol';
 
 export const createUsuario = async (req, res) => {
 
-    const {usuario, password, email, rol, cuil, nombre, fechaNacimiento, direccion, telefono} = req.body;
+    try {
+        const { usuario, password, email, rol, cuil, nombre, fechaNacimiento, direccion, telefono } = req.body;
 
-    const newUsuario = new Usuario({
-        usuario,
-        email,
-        password: await Usuario.encryptPassword(password),
-        cuil,
-        nombre,
-        fechaNacimiento,
-        direccion,
-        telefono
-    });
+        const newUsuario = new Usuario({
+            usuario,
+            email,
+            password: await Usuario.encryptPassword(password),
+            cuil,
+            nombre,
+            fechaNacimiento,
+            direccion,
+            telefono
+        });
 
-    if (rol) {
-        const foundRol = await Rol.findOne({name: rol});
-        newUsuario.rol = foundRol._id;
+        if (rol) {
+            const foundRol = await Rol.findOne({ name: rol });
+            newUsuario.rol = foundRol._id;
+        }
+        else {
+            const rol = await Rol.findOne({ name: "cliente" });
+            newUsuario.rol = rol._id;
+        }
+
+        const savedUsuario = await newUsuario.save();
+
+        const token = jwt.sign({ id: savedUsuario._id }, config.SECRET, {
+            expiresIn: 86400 // 24 hours
+        });
+
+        res.status(200).json({ token })
+    } catch (error) {
+        res.status(500).json({ message: error.message });
     }
-    else
-    {
-        const rol = await Rol.findOne({name: "cliente"});
-        newUsuario.rol = rol._id;
-    }
-
-    const savedUsuario = await newUsuario.save();
-
-    const token = jwt.sign({id: savedUsuario._id},config.SECRET,{
-        expiresIn: 86400 // 24 hours
-    });
-
-    res.status(200).json({token})
 
 };
 
 export const getUsuarios = async (req, res) => {
 
-    const usuarios = await Usuario.find().populate('rol');
-    res.status(200).json(usuarios);
+    try {
+        const usuarios = await Usuario.find().populate('rol');
+        res.status(200).json(usuarios);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 
 };
 
 export const getUsuarioById = async (req, res) => {
 
-    const usuario = await Usuario.findById(req.params.id).populate('rol');
-    res.status(200).json(usuario);
+    try {
+        const usuario = await Usuario.findById(req.params.id).populate('rol');
+        res.status(200).json(usuario);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 
 };
 
 export const updateUsuarioById = async (req, res) => {
 
-    const updatedUsuario = await Usuario.findByIdAndUpdate(req.params.id, req.body, {
-        new: true
-    });
-    res.status(204).json(updatedUsuario);
+    try {
+        const updatedUsuario = await Usuario.findByIdAndUpdate(req.params.id, req.body, {
+            new: true
+        });
+        res.status(204).json(updatedUsuario);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 
 };
 
 export const deleteUsuarioById = async (req, res) => {
 
-    const {id}=req.params;
-    await Usuario.findByIdAndDelete(id);
-    res.status(204).json();
+    try {
+        const { id } = req.params;
+        await Usuario.findByIdAndDelete(id);
+        res.status(204).json();
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 
 };
