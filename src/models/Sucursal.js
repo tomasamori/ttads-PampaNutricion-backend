@@ -4,7 +4,7 @@ const sucursalSchema = new Schema({
     nombre: String,
     direccion: String,
     localidad: {type: Schema.Types.ObjectId, ref: 'Localidad'},
-    imgUrl: String
+    foto: String
 }, {
     timestamps: true,
     versionKey: false,
