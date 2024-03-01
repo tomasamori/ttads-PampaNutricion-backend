@@ -1,4 +1,5 @@
 import Localidad from '../models/Localidad';
+import Sucursal from '../models/Sucursal';
 
 export const createLocalidad = async (req, res) => {
 
@@ -42,13 +43,12 @@ export const deleteLocalidadById = async (req, res) => {
 
 export const findSucursalByLocalidad = async (req, res) => {
     try {
-        const { id } = req.params; // Extrae la ID de la localidad de los parámetros de la solicitud
-        const localidad = await Localidad.findOneOrFail({ id }); // Encuentra la localidad por ID
-        const sucursales = await Sucursal.find({ localidad }); // Encuentra las sucursales con la localidad encontrada
-        const haySucursales = sucursales.length > 0; // Verifica si hay sucursales asociadas
-        res.status(200).json({ haySucursales }); // Devuelve true si hay sucursales asociadas, false si no hay sucursales
+        const {id}=req.params;
+        const localidad = await Localidad.findById(id); // Encuentra la localidad por ID
+        const sucursales = await Sucursal.find({ localidad: localidad.id }); // Encuentra las sucursales con la localidad encontrada
+        res.status(200).json(sucursales);
     } catch (error) {
-        console.error('Error al verificar sucursales por localidad:', error);
-        res.status(500).json({ error: 'Error interno del servidor' });
+        res.status(500).json({ message: error.message });
     }
 };
+
