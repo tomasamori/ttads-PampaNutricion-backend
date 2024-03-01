@@ -24,7 +24,7 @@ export const createRoles = async() => {
         const foundedRol = await Rol.findOne({name: 'admin'});
         const rolAdmin = foundedRol._id;
 
-        const valuesUsuarios = await new Usuario({usuario: 'admin', password: await Usuario.encryptPassword('admin'), email: 'admin@gmail.com', roles: rolAdmin}).save();
+        const valuesUsuarios = await new Usuario({usuario: 'admin', password: await Usuario.encryptPassword('admin'), email: 'admin@gmail.com', rol: rolAdmin}).save();
 
         console.log(valuesUsuarios);
 
