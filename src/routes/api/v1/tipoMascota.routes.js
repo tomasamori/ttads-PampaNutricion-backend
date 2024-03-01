@@ -7,6 +7,8 @@ router.get('/', tipoMascotaCtrl.getTipoMascotas);
 
 router.get('/:id', tipoMascotaCtrl.getTipoMascotaById);
 
+router.get('/:id/productos', tipoMascotaCtrl.findProductoByTipoMascota);
+
 router.post('/'/*, [authJwt.verifyToken, authJwt.isEmpleado]*/, tipoMascotaCtrl.createTipoMascota);
 
 router.put('/:id'/*, [authJwt.verifyToken, authJwt.isEmpleado]*/, tipoMascotaCtrl.updateTipoMascotaById);

@@ -1,4 +1,5 @@
 import TipoMascota from '../models/TipoMascota';
+import Producto from '../models/Producto';
 
 export const createTipoMascota = async (req, res) => {
 
@@ -58,4 +59,15 @@ export const deleteTipoMascotaById = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 
+};
+
+export const findProductoByTipoMascota = async (req, res) => {
+    try {
+        const {id}=req.params;
+        const tipoMascota = await TipoMascota.findById(id); // Encuentra la TipoDeMascota por ID
+        const productos = await Producto.find({ tipoMascota: tipoMascota.id }); // Encuentra las sucursales con la localidad encontrada
+        res.status(200).json(productos);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 };
