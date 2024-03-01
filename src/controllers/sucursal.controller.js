@@ -3,7 +3,6 @@ import Sucursal from '../models/Sucursal';
 export const createSucursal = async (req, res) => {
 
     try {
-        console.log(req.body);
         const { nombre, direccion, localidad, foto } = req.body;
         const newSucursal = new Sucursal({ nombre, direccion, localidad, foto });
         const sucursalSaved = await newSucursal.save();
