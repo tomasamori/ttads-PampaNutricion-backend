@@ -20,7 +20,7 @@ export const createUsuario = async (req, res) => {
         });
 
         if (rol) {
-            const foundRol = await Rol.findOne({ name: rol });
+            const foundRol = await Rol.findOne({ _id: rol });
             newUsuario.rol = foundRol._id;
         }
         else {
