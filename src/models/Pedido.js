@@ -3,8 +3,10 @@ import { Schema, model } from 'mongoose';
 const PedidoSchema = new Schema({
   nroPedido: { type: Number, unique: true },
   usuario: { type: Schema.Types.ObjectId, ref: 'Usuario' },
-  productos: [{ type: Schema.Types.ObjectId, ref: 'Producto' }],
-  cantidad: [{ type: Number, default: 1 }],
+  items: [{
+    producto: { type: Schema.Types.ObjectId, ref: 'Producto' },
+    cantidad: Number
+  }],
   subtotal: Number,
   total: Number,
   estado: String,
