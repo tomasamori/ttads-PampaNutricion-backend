@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const ProveedorSchema = new mongoose.Schema({
-    cuil: String,
     cuit: String,
     razonSocial: String,
     email: String,

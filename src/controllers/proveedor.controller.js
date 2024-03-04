@@ -3,8 +3,8 @@ import Proveedor from '../models/Proveedor';
 export const createProveedor = async (req, res) => {
 
     try {
-        const { cuil, cuit, razonSocial, email, telefono } = req.body;
-        const newProveedor = new Proveedor({ cuil, cuit, razonSocial, email, telefono });
+        const { cuit, razonSocial, email, telefono } = req.body;
+        const newProveedor = new Proveedor({ cuit, razonSocial, email, telefono });
         const proveedorSaved = await newProveedor.save();
         res.status(201).json(proveedorSaved);
     } catch (error) {
