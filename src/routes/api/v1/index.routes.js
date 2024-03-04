@@ -9,6 +9,7 @@ import auth from './auth.routes';
 import usuario from './usuario.routes';
 import precio from './precios.routes';
 import pedido from './pedido.routes';
+import rol from './rol.routes'
 
 const router = express.Router();
 
@@ -21,5 +22,6 @@ router.use('/auth', auth);
 router.use('/usuario', usuario);
 router.use('/precio', precio);
 router.use('/pedido', pedido);
+router.use('/rol', rol);
 
 export default router;
