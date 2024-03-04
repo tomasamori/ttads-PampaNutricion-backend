@@ -8,6 +8,8 @@ router.get('/', usuarioCtrl.getUsuarios);
 
 router.get('/:id', usuarioCtrl.getUsuarioById);
 
+router.get('/:id/pedidos', usuarioCtrl.findOrdersByUser);
+
 router.post('/'/*, [authJwt.verifyToken, authJwt.isAdmin, verifySignUp.checkRolesExisted, verifySignUp.checkDuplicateUsernameOrEmail]*/, usuarioCtrl.createUsuario);
 
 router.put('/:id'/*, [authJwt.verifyToken, authJwt.isAdmin, verifySignUp.checkRolesExisted, verifySignUp.checkDuplicateUsernameOrEmail]*/, usuarioCtrl.updateUsuarioById);

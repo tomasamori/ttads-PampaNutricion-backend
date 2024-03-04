@@ -2,6 +2,7 @@ import Usuario from '../models/Usuario';
 import jwt from 'jsonwebtoken'
 import config from '../config';
 import Rol from '../models/Rol';
+import Pedido from '../models/Pedido';
 
 export const createUsuario = async (req, res) => {
 
@@ -86,4 +87,15 @@ export const deleteUsuarioById = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 
+};
+
+export const findOrdersByUser = async (req, res) => {
+    try {
+        const {id}=req.params;
+        const usuario = await Usuario.findById(id); // Encuentra el usuario por ID
+        const pedidos = await Pedido.find({ usuario: usuario.id }); // Encuentra los pedidos con el usuario encontrado
+        res.status(200).json(pedidos);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 };
