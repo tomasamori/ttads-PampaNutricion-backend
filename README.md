@@ -119,4 +119,6 @@ Se muestran todos los pedidos y al solicitar más información se muestra el cli
 
 ## Modelo de datos
 
-![Modelo de datos](https://user-images.githubusercontent.com/80716821/178338817-e7e7faca-d5ed-4a40-a87f-1aff167d3518.jpg)
+![Modelo de datos](https://github.com/tomasamori/ttads-PampaNutricion-backend/assets/81585058/b7cbb696-fb28-49d8-b252-c1663214af6a)
+
+
